@@ -34,9 +34,9 @@ export default {
     miniTips(options) {
       this.mTips.text = options.text || 'text';
       this.mTips.visible = true;
-      setTimeout(() => {
-        this.mTips.visible = false;
-      }, options.milliseconds || 1500);
+      // setTimeout(() => {
+      //   this.mTips.visible = false;
+      // }, options.milliseconds || 1500);
     },
     successTips(options) {
 
@@ -62,7 +62,7 @@ export default {
   text-align: center;
   padding: 0 15px;
   box-sizing: border-box;
-  width: fit-content;
+  width: max-content;
   border-radius: 3px;
 }
 </style>
