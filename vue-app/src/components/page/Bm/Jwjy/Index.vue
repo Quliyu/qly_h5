@@ -34,7 +34,7 @@
         </p>
       </div>
       <div>
-        <p>
+        <p :style="postForm.submiting?'opacity:.5;':'opacity:1;'">
           <button @click="postOk">立即报名</button>
         </p>
       </div>
@@ -59,6 +59,7 @@ export default {
         remark1: '',
         remark2: '',
         category: 'jwjy',
+        submiting: false,
       },
     };
   },
@@ -67,35 +68,42 @@ export default {
   },
   methods: {
     postOk() {
+      if(this.postForm.submiting){
+        return
+      }
+      this.postForm.submiting = true
+      setTimeout(()=>{
+        this.postForm.submiting = false
+      },1500)
       // console.log(this.postForm);
       if (!this.postForm.name) {
-        this.$parent.miniTips('请填写您孩子的姓名');
+        this.$parent.miniTips({text:'请填写您孩子的姓名'});
         return;
       }
       if (!this.postForm.mobile) {
-        this.$parent.miniTips('请填写家长联系手机号码');
+        this.$parent.miniTips({text:'请填写家长联系手机号码'});
         return;
       }
       if (!(/^0?(13|14|15|17|18)[0-9]{9}$/.test(this.postForm.mobile))) {
-        this.$parent.miniTips('手机号格式不正确');
+        this.$parent.miniTips({text:'手机号格式不正确'});
         return;
       }
       if (!this.postForm.remark1) {
-        this.$parent.miniTips('请选择学校');
+        this.$parent.miniTips({text:'请选择学校'});
         return;
       }
       if (!this.postForm.remark2) {
-        this.$parent.miniTips('请选择年级');
+        this.$parent.miniTips({text:'请选择年级'});
         return;
       }
       if (!this.postForm.category) {
-        this.$parent.miniTips('请选择机构');
+        this.$parent.miniTips({text:'请选择机构'});
         return;
       }
       qlyNew(this.postForm).then((res) => {
         // console.log(res.data);
         if (res.data.code === 200) {
-          this.$parent.miniTips('提交成功');
+          this.$parent.miniTips({text:'提交成功'});
           this.postForm = {
             name: '',
             mobile: '',
@@ -104,8 +112,9 @@ export default {
             category: 'jwjy',
           };
         } else {
-          this.$parent.miniTips('提交失败');
+          this.$parent.miniTips({text:'提交失败'});
         }
+        this.postForm.submiting = false
       }, (err) => {
         console.info('调用失败', err);
       });

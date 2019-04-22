@@ -1,9 +1,7 @@
 <template>
   <div class="qly-msg">
     <div v-if="mTips.visible" class="m-tips">
-      <div class="m-tips-main">
-        <p>{{mTips.text}}</p>
-      </div>
+      <p>{{mTips.text}}</p>
     </div>
   </div>
 </template>
@@ -13,6 +11,19 @@ export default {
   name: 'qlyMsg',
   data() {
     return {
+      sTips: {
+        visible: false,
+        title: '',
+        text: '',
+        cancel: {
+          text: '取消',
+          event: null,
+        },
+        confirm: {
+          text: '确定',
+          event: null,
+        },
+      },
       mTips: {
         visible: false,
         text: '',
@@ -20,13 +31,16 @@ export default {
     };
   },
   methods: {
-    miniTips(text) {
-      this.mTips.text = text;
+    miniTips(options) {
+      this.mTips.text = options.text || 'text';
       this.mTips.visible = true;
       setTimeout(() => {
         this.mTips.visible = false;
-      }, 1500);
+      }, options.milliseconds || 1500);
     },
+    successTips(options) {
+
+    }
   },
 };
 </script>
@@ -34,20 +48,21 @@ export default {
 <style scoped>
 .m-tips {
   position: fixed;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   z-index: 10;
-}
-.m-tips-main {
   display: inline-block;
   background-color: #666;
   color: #fff;
   height: 35px;
   line-height: 35px;
-  border-radius: 3px;
   text-align: center;
   padding: 0 15px;
+  box-sizing: border-box;
+  width: fit-content;
+  border-radius: 3px;
 }
 </style>
