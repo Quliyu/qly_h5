@@ -34,9 +34,9 @@ export default {
     miniTips(options) {
       this.mTips.text = options.text || 'text';
       this.mTips.visible = true;
-      // setTimeout(() => {
-      //   this.mTips.visible = false;
-      // }, options.milliseconds || 1500);
+      setTimeout(() => {
+        this.mTips.visible = false;
+      }, options.milliseconds || 1500);
     },
     successTips(options) {
 
@@ -52,17 +52,16 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
   z-index: 10;
+  margin: auto;
+  color: #fff;
+  text-align: center;
   display: inline-block;
   background-color: #666;
-  color: #fff;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  padding: 0 15px;
-  box-sizing: border-box;
-  width: max-content;
+  padding: 5px 10px;
   border-radius: 3px;
+  height: fit-content;
+  width: fit-content;
+  max-width: 75%;
 }
 </style>
