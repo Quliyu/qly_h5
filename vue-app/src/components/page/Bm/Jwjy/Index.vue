@@ -4,29 +4,34 @@
       <div class="logo">
         <span>金屋优优</span>
       </div>
-      <img style="width:100%;" src="http://img.6h5.cn/static/qly/jwjy/hd1/bg-top-1.png">
+      <img style="width:100%;" src="http://img.6h5.cn/static/qly/jwjy/hd1/banner-top-13.png">
+      <div class="t-1">
+        <span>努力在暑假，赢在新学期</span>
+      </div>
     </div>
     <div class="jwjy-main">
 
       <div class="main-desc">
 
-        <div class="title">
-          <h2>{{share.title}}</h2>
-          <h4>
-            <span class="title-666">金屋教育</span>
-            <span class="title-2">2019/4/29</span>
-          </h4>
+        <div class="course">
+          <div>
+            <p>① 暑期班火热招生中，0元试上一天。 <br> ② 五月份报名享受8.8折优惠，六月份报名享受9折优惠。 <br> ③ 团报3人起每人送200现金抵用券。</p>
+          </div>
         </div>
-
 
         <div class="before-add">
           <img src="http://img.6h5.cn/static/qly/jwjy/hd1/p-top.png">
           <div>
-            <span>课程</span>
+            <span>课程简介</span>
           </div>
         </div>
         <div class="one-desc">
-
+          <p>假班火热招生中，0元试上一天。</p>
+          <p>五月份报名享受8.8折优惠，六月份报名享受9折优惠。</p>
+          <p>团报3人起每人送200现金抵用券。</p>
+          <p class="bm-p">
+            <button class="bm-btn" @click="postForm.visible=true;">我要报名</button>
+          </p>
         </div>
         <div class="after-add"></div>
 
@@ -34,37 +39,17 @@
         <div class="before-add">
           <img src="http://img.6h5.cn/static/qly/jwjy/hd1/p-top.png">
           <div>
-            <span>活动描述</span>
+            <span>活动奖品</span>
           </div>
         </div>
         <div class="one-desc">
-          <p>
-            <strong>作业班：</strong>
-            <span>A.晚托班，去学校接回孩子，督导学生完成学校布置的作业。检查孩子的作业完成情况，并对完成的作业进行批改，对当天学习遇到的问题进行辅导，解答疑问，培养孩子的良好习惯</span>
-          </p>
-          <p>
-            <strong>课时班：</strong>
-            <span>每周135根据学校课时进度，给孩子加强课堂学的知识。（一节课为40分钟）</span>
-          </p>
-          <p>
-            <strong>周末提优班：</strong>
-            <span>成绩比较稳定，需要提升，成绩需要上一个台阶的。（每周六小班归纳，总结，提升。）</span>
-          </p>
-          <p>
-            <strong>精品一对一：</strong>
-            <span></span>
-          </p>
-          <p>
-            <strong>书班班：</strong>
-            <span>硬笔书法，书法考级</span>
-          </p>
-          <p>
-            <strong>绘画班：</strong>
-            <span>儿童画，素描，水彩</span>
-          </p>
-          <p class="bm-p">
-            <button class="bm-btn" @click="postForm.visible=true;">我要报名</button>
-          </p>
+          <div class="li-pin">
+            <p>暑假班报名即送小学生 <br> <span>电动文具套装礼盒</span>一套，<br> 或 <span>儿童画笔礼盒</span>一套，<br> 或 <span>电话手表</span>一套。（限前10名）</p>
+            <div class="img-list">
+              <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg">
+              <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg">
+            </div>
+          </div>
         </div>
         <div class="after-add"></div>
 
@@ -80,15 +65,6 @@
         </div>
         <div class="after-add"></div>
 
-
-
-        <div class="li-pin">
-          <h3>暑假班报名即送小学生<span>电动文具套装礼盒</span>一套。或<span>儿童画笔礼盒</span>一套或<span>电话手表</span>一套。（限前10名）</h3>
-          <div class="img-list">
-            <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg">
-            <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg">
-          </div>
-        </div>
 
       </div>
 
@@ -237,18 +213,26 @@ export default {
   font-size: 0;
 }
 .banner-top .logo {
-  height: 40px;
+  height: 30px;
   position: absolute;
-  top: 30px;
+  top: 5%;
   left: 0;
-  width: 120px;
+  width: 22%;
   background-color: #ddeed1;
   border-radius: 0 50px 50px 0;
-  font-size: 22px;
-  line-height: 40px;
+  font-size: 16px;
+  line-height: 30px;
   text-align: center;
-  letter-spacing: 4px;
+  letter-spacing: 0px;
   color: #4d9367;
+  font-weight: 600;
+}
+.banner-top .t-1 {
+  font-size: 14px;
+  position: absolute;
+  top: 79%;
+  left: 0;
+  right: 0;
   font-weight: 600;
 }
 
@@ -259,20 +243,28 @@ export default {
   text-align: left;
 }
 
-.title-1 {
-  color: #8a2be2;
+.course {
+  width: 100%;
+  padding: 5px;
+  border: dashed 2px #fff;
+  box-sizing: border-box;
+  border-radius: 30px;
 }
-.title-2 {
-  color: rgba(0,0,0,0.3);
-  margin-left: 10px;
-}
-.title-666 {
-  color: #666;
+.course > div {
+  background-color: #42845c;
+  padding: 5px 30px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 
 .bm-p {
-  text-align: center;margin-top: 30px;height: 60px;    position: relative;
+  text-align: center;
+  margin-top: 30px;
+  height: 50px;
+  position: relative;
 }
 button.bm-btn {
   position: absolute;
@@ -285,8 +277,8 @@ button.bm-btn {
   margin: auto;
   border: none;
   border-radius: 50px;
-  font-size: 20px;
-  height: 50px;
+  font-size: 16px;
+  height: 40px;
   -webkit-animation-name:ripple;
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: ease;
@@ -296,14 +288,14 @@ button.bm-btn {
 }
 @keyframes ripple {
   0% {
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
+    width: 160px;
+    height: 40px;
+    font-size: 16px;
   }
   100% {
-    width: 240px;
-    height: 60px;
-    font-size: 24px;
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
   }
 }
 
@@ -325,7 +317,7 @@ button.bm-btn {
   position: absolute;
   width: 100%;
   text-align: center;
-  top: 3px;
+  top: 5px;
   font-size: 24px;
   color: #fff;
   font-weight: 600;
@@ -348,13 +340,8 @@ button.bm-btn {
   margin-bottom: 40px;
 }
 
-
 .li-pin {
-  padding: 15px 30px;
-  border: dashed 1px;
-  margin-bottom: 30px;
-  color: #8a2be2;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 .li-pin .img-list {
   font-size: 0;
@@ -365,10 +352,7 @@ button.bm-btn {
   box-sizing: border-box;
   padding: 0 5px;
 }
-.li-pin .img-list img+img {
-  /*padding-left: 20px;*/
-}
-.li-pin > h3 > span {
+.li-pin > p > span {
   background-color: #8a2be2;
   color: #fff;
   padding: 0 5px;
