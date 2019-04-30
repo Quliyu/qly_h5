@@ -27,8 +27,8 @@ export default {
 <style scoped>
 .qr-code {
   position: fixed;
-  top: 0;
-  margin-left: -150px;
+  top: 15px;
+  margin-left: -165px;
   width: 150px;
   font-size: 0;
 }

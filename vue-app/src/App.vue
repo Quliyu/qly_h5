@@ -5,7 +5,7 @@
     </transition>
     <heng-shu-ping></heng-shu-ping>
     <div v-if="deviceName=='pc'">
-      <cm-qrcode></cm-qrcode>
+      <qly-qrcode></qly-qrcode>
     </div>
     <!-- 提示组件 开始 -->
     <qly-msg ref="QlyMsg"/>
@@ -27,13 +27,13 @@ import { deviceName, browserName } from '@/const';
 
 // 自定义组件
 import HengShuPing from '@/components/common/HengShuPing';
-import CmQrcode from '@/components/common/CmQrcode';
+import QlyQrcode from '@/components/common/QlyQrcode';
 import QlyMsg from '@/components/common/QlyMsg';
 
 console.log('deviceName=>', deviceName, 'browserName=>', browserName);
 export default {
   name: 'AppPage',
-  components: { HengShuPing, CmQrcode, QlyMsg },
+  components: { HengShuPing, QlyQrcode, QlyMsg },
   data() {
     return {
       transitionName: 'fade',
@@ -348,7 +348,7 @@ export default {
       if (title && title.replace(/undefined/ig, '')) {
         document.title = title;
         const i = document.createElement('iframe');
-        i.src = 'http://www.cloudm.com/favicon.ico';
+        i.src = 'http://img.6h5.cn/static/cdn/nran/favicon.ico';
         i.style.display = 'none';
         i.onload = () => {
           setTimeout(() => {
@@ -389,7 +389,7 @@ export default {
 html {
   background-color: #f3f4f5;
 }
-html,body,ul,li,p,h1,h3 {
+html,body {
   margin: 0;
   padding: 0;
 }
