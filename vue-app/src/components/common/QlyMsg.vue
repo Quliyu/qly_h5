@@ -63,5 +63,9 @@ export default {
   height: fit-content;
   width: fit-content;
   max-width: 75%;
+  font-size: 15px;
+}
+.m-tips p {
+  margin: 0;padding: 0;
 }
 </style>

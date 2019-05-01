@@ -6,14 +6,14 @@
       </div>
       <img style="width:100%;" src="http://img.6h5.cn/static/qly/jwjy/hd1/banner-top-13.png">
       <div class="t-1">
-        <span>努力在暑假，赢在新学期</span>
+        <img src="http://img.6h5.cn/static/qly/jwjy/hd1/banner-top-22.png">
       </div>
     </div>
     <div class="jwjy-main">
 
       <div class="main-desc">
 
-        <div class="course">
+        <div class="course-hd">
           <div>
             <p>① 暑期班火热招生中，0元试上一天。 <br> ② 五月份报名享受8.8折优惠，六月份报名享受9折优惠。 <br> ③ 团报3人起每人送200现金抵用券。</p>
           </div>
@@ -25,15 +25,25 @@
             <span>课程简介</span>
           </div>
         </div>
-        <div class="one-desc">
-          <p>假班火热招生中，0元试上一天。</p>
-          <p>五月份报名享受8.8折优惠，六月份报名享受9折优惠。</p>
-          <p>团报3人起每人送200现金抵用券。</p>
+        <div class="one-desc" style="">
+          <div class="course-list">
+            <div v-for="(el,index) in courseList" :key="index" :data-name="el.name" :class="postForm.content.course==el.name?'selected':''" @click="selectOneCourse(el)">
+              <img :src="el.img">
+            </div>
+          </div>
           <p class="bm-p">
             <button class="bm-btn" @click="postForm.visible=true;">我要报名</button>
           </p>
         </div>
         <div class="after-add"></div>
+
+        <div class="course-detail-bg" v-if="courseDetail.visible" @click="courseDetail.visible=false"></div>
+        <div class="course-detail" v-if="courseDetail.visible">
+          <div v-html="courseDetail.content"></div>
+          <div class="close-1" @click="courseDetail.visible=false">
+            <img src="http://img.6h5.cn/static/qly/jwjy/hd1/icon-close.png?t=1">
+          </div>
+        </div>
 
 
         <div class="before-add">
@@ -68,21 +78,24 @@
 
       </div>
 
-      <div class="main-post-bg" v-if="postForm.visible" @click="postForm.visible=false;"></div>
+      <div class="main-post-bg" v-if="postForm.visible" @click="postForm.visible=false"></div>
       <div class="main-post" v-if="postForm.visible">
+        <div class="close-1" @click="postForm.visible=false">
+          <img src="http://img.6h5.cn/static/qly/jwjy/hd1/icon-close.png?t=1">
+        </div>
         <div>
           <p>
-            <input type="text" name="name" v-model="postForm.name" maxlength="10" placeholder="请填写您孩子的姓名">
+            <input type="text" name="name" v-model="postForm.content.name" maxlength="10" placeholder="请填写您孩子的姓名">
           </p>
         </div>
         <div>
           <p>
-            <input type="tel" name="mobile" v-model="postForm.mobile" maxlength="11" placeholder="请填写家长联系手机号码">
+            <input type="tel" name="mobile" v-model="postForm.content.mobile" maxlength="11" placeholder="请填写家长联系手机号码">
           </p>
         </div>
         <div>
           <p>
-            <select v-model="postForm.remark1">
+            <select v-model="postForm.content.school">
               <option value="">请选择学校</option>
               <option v-for="(el,index) in schoolList" :key="index" :value="el">{{el}}</option>
             </select>
@@ -90,13 +103,13 @@
         </div>
         <div>
           <p>
-            <select v-model="postForm.remark2">
+            <select v-model="postForm.content.grade">
               <option value="">请选择年级</option>
               <option v-for="(el,index) in gradeList" :key="index" :value="el">{{el}}</option>
             </select>
           </p>
         </div>
-        <div style="margin-top: 20px;">
+        <div style="margin-top: 10px;">
           <p :style="postForm.submiting?'opacity:.5;':'opacity:1;'">
             <button @click="postOk">立即报名</button>
           </p>
@@ -131,18 +144,42 @@ export default {
   data() {
     return {
       share: {
-        title: '假班火热招生中，0元试上一天。努力在暑假，赢在新学期。五月份报名享受8.8折优惠，六月份报名享受9折优惠。团报3人起每人送200现金抵用券。'
+        title: '暑假班火热招生中，0元试上一天。努力在暑假，赢在新学期。五月份报名享受8.8折优惠，六月份报名享受9折优惠。团报3人起每人送200现金抵用券。'
+      },
+      courseList: [{
+        name: '幼小衔接班',
+        img: 'http://img.6h5.cn/static/qly/jwjy/hd1/b-yxxj.png?t=1',
+        content: '拼音 算数 识字'
+      },{
+        name: '中小学提优班',
+        img: 'http://img.6h5.cn/static/qly/jwjy/hd1/b-zxxty.png?t=1',
+        content: '语文 数学 英语'
+      },{
+        name: '书法班',
+        img: 'http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=1',
+        content: '硬笔书法 专业考级'
+      },{
+        name: '绘画班',
+        img: 'http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=1',
+        content: '儿童画 水墨 素描'
+      }],
+      courseDetail: {
+        visible: false,
+        content: ''
       },
       schoolList: ['小学1', '小学2', '小学3', '小学4'],
       gradeList: ['一年级', '二年级', '三年级', '四年级', '五年级', '六年级'],
       postForm: {
         visible: false,
-        name: '',
-        mobile: '',
-        remark1: '',
-        remark2: '',
-        category: 'jwjy',
         submiting: false,
+        category: 'jwjy',
+        content: {
+          name: '',
+          mobile: '',
+          school: '',
+          grade: '',
+          course: ''
+        }
       },
     };
   },
@@ -150,6 +187,11 @@ export default {
     this.$parent.setTitle(this.share.title)
   },
   methods: {
+    selectOneCourse(el){
+      this.postForm.content.course = el.name
+      this.courseDetail.content = el.content
+      this.courseDetail.visible = true
+    },
     postOk() {
       if(this.postForm.submiting){
         return
@@ -159,23 +201,23 @@ export default {
         this.postForm.submiting = false
       },1500)
       // console.log(this.postForm);
-      if (!this.postForm.name) {
+      if (!this.postForm.content.name) {
         this.$parent.miniTips({text:'请填写您孩子的姓名'});
         return;
       }
-      if (!this.postForm.mobile) {
+      if (!this.postForm.content.mobile) {
         this.$parent.miniTips({text:'请填写家长联系手机号码'});
         return;
       }
-      if (!(/^0?(13|14|15|17|18)[0-9]{9}$/.test(this.postForm.mobile))) {
+      if (!(/^0?(13|14|15|17|18)[0-9]{9}$/.test(this.postForm.content.mobile))) {
         this.$parent.miniTips({text:'手机号格式不正确'});
         return;
       }
-      if (!this.postForm.remark1) {
+      if (!this.postForm.content.school) {
         this.$parent.miniTips({text:'请选择学校'});
         return;
       }
-      if (!this.postForm.remark2) {
+      if (!this.postForm.content.grade) {
         this.$parent.miniTips({text:'请选择年级'});
         return;
       }
@@ -183,16 +225,17 @@ export default {
         this.$parent.miniTips({text:'请选择机构'});
         return;
       }
+      this.$parent.miniTips({text:'开发中...'});
+      return
       qlyNew(this.postForm).then((res) => {
         // console.log(res.data);
         if (res.data.code === 200) {
           this.$parent.miniTips({text:'提交成功'});
-          this.postForm = {
+          this.postForm.content = {
             name: '',
             mobile: '',
-            remark1: '',
-            remark2: '',
-            category: 'jwjy',
+            school: '',
+            grade: '',
           };
         } else {
           this.$parent.miniTips({text:'提交失败'});
@@ -230,10 +273,14 @@ export default {
 .banner-top .t-1 {
   font-size: 14px;
   position: absolute;
-  top: 79%;
+  top: 80%;
   left: 0;
   right: 0;
   font-weight: 600;
+}
+.banner-top .t-1 > img {
+  width: 50%;
+  margin-left: 2%;
 }
 
 .jwjy-main {
@@ -243,20 +290,98 @@ export default {
   text-align: left;
 }
 
-.course {
+.course-hd {
   width: 100%;
   padding: 5px;
   border: dashed 2px #fff;
   box-sizing: border-box;
   border-radius: 30px;
 }
-.course > div {
+.course-hd > div {
   background-color: #42845c;
   padding: 5px 30px;
   border-radius: 30px;
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+}
+
+.course-list {
+  font-size: 0;
+  margin-top: 20px;
+}
+.course-list > div {
+  box-sizing: border-box;
+  border: dashed 2px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  background-color: #84ce87;
+  height: 60px;
+}
+.course-list > div.selected {
+  background-color: #ff8901;
+  border: dashed 2px #ff8901;
+}
+/*.course-list > div:nth-child(odd){
+  text-align: right;
+  padding-right: 10px;
+}
+.course-list > div:nth-child(even){
+  text-align: left;
+  padding-left: 10px;
+}*/
+
+.course-list > div > img {
+  height: 65%;
+  margin-top: 5px;
+}
+.course-list > div:nth-child(1) > img {
+  height: 75%;
+}
+.course-list > div:nth-child(2) > img {
+  height: 80%;
+}
+
+.course-detail-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 11;
+}
+.course-detail {
+  position: fixed;
+  width: 80%;
+  background-color: #fff;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+  height: fit-content;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 15px;
+  min-height: 150px;
+  border-radius: 10px;
+}
+.close-1 {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background-color: #000;
+  border-radius: 100%;
+  right: -15px;
+  top: -15px;
+  border: none;
+}
+.close-1 img {
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -384,6 +509,8 @@ button.bm-btn {
   margin: auto;
   bottom: 0;
   height: fit-content;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 .main-post select,input,button{
   font-size: 16px;
@@ -396,12 +523,18 @@ button.bm-btn {
   border: solid 1px #ccc;
   margin-top: 5px;
 }
+.main-post button{
+  background-color: #4692e0;
+  color: #fff;
+  letter-spacing: 3px;
+  border: solid 1px #4692e0;
+}
 .main-post p {
   margin: 0;
   padding: 0;
 }
 .main-post > div {
-  padding-top: 10px;
+  /*padding-top: 10px;*/
 }
 .main-post > div > label {
   padding-left: 5px;
