@@ -72,6 +72,9 @@
         </div>
         <div class="one-desc">
           <p> <img style="height:20px;" src="http://img.6h5.cn/static/qly/jwjy/hd1/address-2.png"> 郭新东路57号金屋优优（尹山湖医院向西300米）</p>
+          <p v-if="browserName!='wx'" style="text-align: center;">
+            <span style="padding: 5px 10px;background-color: #4692e0;color: #fff;border-radius: 50px;" @click="addressNav()">地址导航</span>
+          </p>
         </div>
         <div class="after-add"></div>
 
@@ -138,11 +141,13 @@
 <script>
 
 import { qlyNew } from '@/api/sun';
+import { browserName } from '@/const';
 
 export default {
   name: '',
   data() {
     return {
+      browserName,
       share: {
         title: '暑假班火热招生中，0元试上一天。努力在暑假，赢在新学期。五月份报名享受8.8折优惠，六月份报名享受9折优惠。团报3人起每人送200现金抵用券。'
       },
@@ -192,6 +197,9 @@ export default {
       this.courseDetail.content = el.content
       this.courseDetail.visible = true
     },
+    addressNav(){
+      this.$parent.miniTips({text:'地址导航'})
+    },
     postOk() {
       if(this.postForm.submiting){
         return
@@ -225,7 +233,7 @@ export default {
         this.$parent.miniTips({text:'请选择机构'});
         return;
       }
-      this.$parent.miniTips({text:'开发中...'});
+      this.$parent.successTips({text:'开发中...'});
       return
       qlyNew(this.postForm).then((res) => {
         // console.log(res.data);

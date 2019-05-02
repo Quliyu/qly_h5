@@ -3,6 +3,17 @@
     <div v-if="mTips.visible" class="m-tips">
       <p>{{mTips.text}}</p>
     </div>
+    <div v-if="cTips.visible" class="c-tips">
+      <div>
+        <p class="icon">
+          <img :src="cTips.icon[cTips.type]">
+        </p>
+        <p class="text">{{cTips.text}}</p>
+        <p class="btns">
+          <span v-for="(el,index) in cTips.btns" @click="cTipsEvent(el)">{{el.text}}</span>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,18 +22,15 @@ export default {
   name: 'qlyMsg',
   data() {
     return {
-      sTips: {
+      cTips: {
         visible: false,
-        title: '',
-        text: '',
-        cancel: {
-          text: '取消',
+        type: 1, // 0info 1success 2error
+        icon: ['http://img.6h5.cn/static/qly/jwjy/hd1/c-tips-info.png','http://img.6h5.cn/static/qly/jwjy/hd1/c-tips-success.png'],
+        text: 'text',
+        btns: [{
+          text: '知道了',
           event: null,
-        },
-        confirm: {
-          text: '确定',
-          event: null,
-        },
+        }]
       },
       mTips: {
         visible: false,
@@ -39,7 +47,20 @@ export default {
       }, options.milliseconds || 1500);
     },
     successTips(options) {
+      this.cTips.type = 1;
+      this.cTips.text = options.text || 'text';
+      this.cTips.visible = true;
+    },
+    infoTips(options){
+      this.cTips.type = 0;
+      this.cTips.text = options.text || 'text';
+      this.cTips.visible = true;
+    },
+    cTipsEvent(el){
+      this.cTips.visible = false
+      if(el.event){
 
+      }
     }
   },
 };
@@ -67,5 +88,47 @@ export default {
 }
 .m-tips p {
   margin: 0;padding: 0;
+}
+
+.c-tips {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 11;
+}
+.c-tips > div {
+  position: absolute;
+  width: 60%;
+  height: fit-content;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 10px;
+}
+.c-tips p {
+  margin: 0;
+  padding: 0;
+}
+.c-tips > div > .icon > img {
+  width: 30px;
+  height: 30px;
+}
+.c-tips p.icon {
+  padding-top: 15px;
+}
+.c-tips p.text {
+  padding: 15px 0;
+}
+.c-tips p.btns {
+  padding: 0!important;
+  height: 44px;
+  line-height: 44px;
+  border-top: solid 1px #ccc;
 }
 </style>

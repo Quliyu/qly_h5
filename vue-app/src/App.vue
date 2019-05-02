@@ -75,8 +75,14 @@ export default {
     }
   },
   methods: {
-    miniTips(text) {
-      this.$refs.QlyMsg.miniTips(text);
+    miniTips(options) {
+      this.$refs.QlyMsg.miniTips(options);
+    },
+    successTips(options){
+      this.$refs.QlyMsg.successTips(options)
+    },
+    infoTips(options){
+      this.$refs.QlyMsg.infoTips(options)
     },
     // // 监听微信返回按钮 开始
     // popstate() {
