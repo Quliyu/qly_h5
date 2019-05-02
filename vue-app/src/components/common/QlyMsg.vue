@@ -3,14 +3,14 @@
     <div v-if="mTips.visible" class="m-tips">
       <p>{{mTips.text}}</p>
     </div>
-    <div v-if="cTips.visible" class="c-tips">
-      <div>
+    <div v-if="cTips.visible" class="c-tips" @click="cTipsClose">
+      <div @click.stop>
         <p class="icon">
           <img :src="cTips.icon[cTips.type]">
         </p>
         <p class="text">{{cTips.text}}</p>
         <p class="btns">
-          <span v-for="(el,index) in cTips.btns" @click="cTipsEvent(el)">{{el.text}}</span>
+          <span v-for="(el,index) in cTips.btns" @click="cTipsEvent(el)" :style="'width:'+(100/cTips.btns.length)+'%;'">{{el.text}}</span>
         </p>
       </div>
     </div>
@@ -24,6 +24,7 @@ export default {
     return {
       cTips: {
         visible: false,
+        bgClickClose: true,
         type: 1, // 0info 1success 2error
         icon: ['http://img.6h5.cn/static/qly/jwjy/hd1/c-tips-info.png','http://img.6h5.cn/static/qly/jwjy/hd1/c-tips-success.png'],
         text: 'text',
@@ -51,15 +52,20 @@ export default {
       this.cTips.text = options.text || 'text';
       this.cTips.visible = true;
     },
-    infoTips(options){
+    infoTips(options) {
       this.cTips.type = 0;
       this.cTips.text = options.text || 'text';
       this.cTips.visible = true;
     },
-    cTipsEvent(el){
+    cTipsEvent(el) {
       this.cTips.visible = false
       if(el.event){
 
+      }
+    },
+    cTipsClose() {
+      if(this.cTips.bgClickClose){
+        this.cTips.visible = false
       }
     }
   },
@@ -102,6 +108,7 @@ export default {
 .c-tips > div {
   position: absolute;
   width: 60%;
+  max-width: 480px;
   height: fit-content;
   background-color: #fff;
   top: 0;
@@ -130,5 +137,8 @@ export default {
   height: 44px;
   line-height: 44px;
   border-top: solid 1px #ccc;
+}
+.c-tips p.btns > span {
+  display: inline-block;
 }
 </style>
