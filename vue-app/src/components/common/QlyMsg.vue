@@ -24,7 +24,7 @@ export default {
     return {
       cTips: {
         visible: false,
-        bgClickClose: true,
+        bgClickClose: false,
         type: 1, // 0info 1success 2error
         icon: ['http://img.6h5.cn/static/qly/jwjy/hd1/c-tips-info.png','http://img.6h5.cn/static/qly/jwjy/hd1/c-tips-success.png'],
         text: 'text',
@@ -49,11 +49,13 @@ export default {
     },
     successTips(options) {
       this.cTips.type = 1;
+      this.cTips.bgClickClose = options.bgClickClose || false
       this.cTips.text = options.text || 'text';
       this.cTips.visible = true;
     },
     infoTips(options) {
       this.cTips.type = 0;
+      this.cTips.bgClickClose = options.bgClickClose || false
       this.cTips.text = options.text || 'text';
       this.cTips.visible = true;
     },
@@ -123,14 +125,14 @@ export default {
   padding: 0;
 }
 .c-tips > div > .icon > img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 }
 .c-tips p.icon {
   padding-top: 15px;
 }
 .c-tips p.text {
-  padding: 15px 0;
+  padding: 15px 10px;
 }
 .c-tips p.btns {
   padding: 0!important;

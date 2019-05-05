@@ -10,7 +10,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/sun/': {
-        target: 'https://api.6h5.cn/sun/',
+        // target: 'https://api.6h5.cn/sun/',
+        target: 'http://localhost:9581/',
         changeOrigin: true,
         pathRewrite: {
           '^/sun': '',
