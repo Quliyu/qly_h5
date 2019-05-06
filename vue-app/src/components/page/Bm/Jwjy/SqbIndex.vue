@@ -83,6 +83,20 @@
         <div class="after-add"></div>
 
 
+        <div class="before-add">
+          <img src="http://img.6h5.cn/static/qly/jwjy/hd1/p-top.png">
+          <div>
+            <span>联系电话</span>
+          </div>
+        </div>
+        <div class="one-desc">
+          <p>谢老师：<a href="tel:15150157762" style="text-decoration: none;
+            color: black;font-weight: 600;">15150157762</a>（微信同号）</p>
+        </div>
+        <div class="after-add"></div>
+
+
+
       </div>
 
       <div class="main-post-bg" v-if="postForm.visible" @click="postForm.visible=false"></div>
@@ -144,7 +158,7 @@
 
 <script>
 
-import { qlyNew } from '@/api/sun';
+import { qlyNew, burialPointLogsCreate } from '@/api/sun';
 import { browserName } from '@/const';
 
 export default {
@@ -177,7 +191,7 @@ export default {
         content: ''
       },
       schoolList: ['郭巷实验小学', '尹山湖实验小学', '金港学校', '东方学校', '尹山湖中学', '其他'],
-      gradeList: ['一年级', '二年级', '三年级', '四年级', '五年级', '六年级','七年级','八年级','九年级'],
+      gradeList: ['幼小衔接', '一升二', '二升三', '三升四', '四升五', '五升六','小升初','七升八','八升九'],
       postForm: {
         visible: false,
         submiting: false,
@@ -194,6 +208,7 @@ export default {
   },
   created() {
     this.$parent.setTitle(this.share.title)
+    this.createLog()
   },
   methods: {
     selectOneCourse(el){
@@ -257,6 +272,21 @@ export default {
         console.info('调用失败', err);
       });
     },
+    // 埋点日志
+    createLog(){
+      const logForm = {
+        title: '金屋-暑期班',
+        user: '0',
+        content: JSON.stringify({
+          url: window.location.href,
+          UA: window.navigator.userAgent,
+        }),
+        category: 'JwjySqb',
+      };
+      burialPointLogsCreate(logForm).then(res=>{
+        // 
+      })
+    }
   },
 };
 </script>

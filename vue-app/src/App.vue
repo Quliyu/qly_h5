@@ -19,7 +19,7 @@ import wx from 'weixin-js-sdk';
 import dayjs from 'dayjs';
 import dingtalk from 'dingtalk-jsapi';
 // import dingtalk from 'dingtalk-javascript-sdk';
-// import { fetchWxConfig } from '@/api/wx';
+import { fetchWxConfig } from '@/api/wx';
 import { fetchQnUptoken } from '@/api/qn';
 
 // 常量 设备浏览器
@@ -51,9 +51,9 @@ export default {
   created() {
     if (browserName === 'wx') {
       // this.get_wx_config();
-      setTimeout(() => {
-        this.wxReady = true;
-      }, 10000);
+      // setTimeout(() => {
+      //   this.wxReady = true;
+      // }, 10000);
     } else {
       // this.get_qn_uptoken();
     }
@@ -132,40 +132,41 @@ export default {
     },
     // 获取微信配置
     get_wx_config() {
-      // const query = {
-      //   wxFwhType: 'yjx',
-      //   href: encodeURIComponent(window.location.href),
-      // };
-      // fetchWxConfig(query).then((res) => {
-      //   console.log(res);
-      //   this.wxConfig = res.data.wxConfig;
-      //   let pageDebug = false;
-      //   if (window.location.href.indexOf('pageDebug') !== -1) {
-      //     pageDebug = true;
-      //   }
-      //   this.wx.config({
-      //     debug: pageDebug,
-      //     appId: this.wxConfig.appid,
-      //     timestamp: this.wxConfig.timestamp,
-      //     nonceStr: this.wxConfig.noncestr,
-      //     signature: this.wxConfig.signature,
-      //     jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'hideAllNonBaseMenuItem',
-      // 'showMenuItems', 'openAddress', 'chooseWXPay', 'getLocation', 'scanQRCode',
-      // 'chooseImage', 'previewImage', 'uploadImage'],
-      //   });
+      const query = {
+        wxFwhType: 'yjx',
+        href: encodeURIComponent(window.location.href),
+      };
+      fetchWxConfig(query).then((res) => {
+        // console.log(res);
+        this.wxConfig = res.data.wxConfig;
+        let pageDebug = false;
+        if (window.location.href.indexOf('pageDebug') !== -1) {
+          pageDebug = true;
+        }
+        this.wx.config({
+          debug: pageDebug,
+          appId: this.wxConfig.appid,
+          timestamp: this.wxConfig.timestamp,
+          nonceStr: this.wxConfig.noncestr,
+          signature: this.wxConfig.signature,
+          jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'hideAllNonBaseMenuItem',
+      'showMenuItems', 'openAddress', 'chooseWXPay', 'getLocation', 'scanQRCode',
+      'chooseImage', 'previewImage', 'uploadImage'],
+        });
 
-      //   // 微信配置ready
-      //   this.wx.ready(() => {
-      //     console.log('微信配置ready');
-      //     this.wxReady = true;
-      //   });
-      //   this.wx.error((res1) => {
-      //     console.error('wx config error(抱歉，微信配置错误，可能是当前环境不正确)', res1);
-      //   });
-      // }).catch((err) => {
-      //   const tips = `${err.name}:${err.message}`;
-      //   this.$refs.CmMessage.errorTips(tips);
-      // });
+        // 微信配置ready
+        this.wx.ready(() => {
+          console.log('微信配置ready');
+          this.wxReady = true;
+        });
+        this.wx.error((res1) => {
+          console.error('wx config error(抱歉，微信配置错误，可能是当前环境不正确)', res1);
+          this.infoTips({text:res1.errMsg})
+        });
+      }).catch((err) => {
+        const tips = `${err.name}:${err.message}`;
+        this.infoTips({text:tips});
+      });
     },
     // 获取地理位置
     wx_get_location() {

@@ -22,6 +22,12 @@
       </div>
     </div>
 
+    <div class="course-hd">
+      <div>
+        <p>本机构采用全天制教学。三师一班。周一至周五早9:00至下午4:30。</p>
+      </div>
+    </div>
+
 	</div>
 	
 </template>
@@ -29,36 +35,68 @@
 
 
 <script type="text/javascript">
+
+import { burialPointLogsCreate } from '@/api/sun';
+
 export default {
 	name: '',
 	data(){
 		return {
 			priceList: [{
 				name: '暑假托管班',
-				grade: '小班、一年级、二年级',
-				price: '2300',
-				desc: '辅导完成暑假作业，巩固旧知识，预习下学期课程',
+				grade: '幼小衔接、一年级、二年级',
+				price: '2450',
+				desc: '辅导完成暑假作业，送一门课程（指定）',
 			},{
 				name: '暑假课时班',
 				grade: '一年级 ~ 六年级',
-				price: '2880',
+				price: '2980',
 				desc: '纯课时，三师一班制，语数英全科巩固，下学期重难点知识详细讲解',
 			},{
 				name: '暑假提优班',
-				grade: '一年级 ~ 九年级',
-				price: '3200',
-				desc: '建议成绩每科不低于80分，资深老师指导，重难点突破',
+				grade: '一年级 ~ 六年级',
+				price: '3680',
+				desc: '资深老师指导重难点突破。奥数分析讲解。当堂讲解及时大量题型练习。冲刺满分！！（报名建议每科成绩不低于80分）',
 			},{
 				name: '精品1对1',
-				grade: '一年级 ~ 九年级',
+				grade: '一年级 ~ 六年级',
 				price: '120/小时',
-				desc: '更进一步，冲刺100（一班4人）',
+				desc: '',
+			},{
+				name: '绘画班',
+				grade: '幼小衔接，一到三年级',
+				price: '1260',
+				desc: '儿童画、水墨、素描；18课时',
+			},{
+				name: '书法班',
+				grade: '小学',
+				price: '1260',
+				desc: '硬笔书法、中国书法、字里千秋、阐释书法精神；18课时',
 			}]
 		}
 	},
   created() {
     // this.$parent.setTitle('')
+    this.createLog()
+
   },
+  methods: {
+    // 埋点日志
+    createLog(){
+      const logForm = {
+        title: '金屋-暑期班-价格',
+        user: '0',
+        content: JSON.stringify({
+          url: window.location.href,
+          UA: window.navigator.userAgent,
+        }),
+        category: 'JwjySqbPrice',
+      };
+      burialPointLogsCreate(logForm).then(res=>{
+        // 
+      })
+    },
+  }
 }
 </script>
 
@@ -77,10 +115,15 @@ export default {
   width: 1%;
 }
 
+#customers td:nth-child(2),
+#customers th:nth-child(2) {
+  width: 1%;
+}
+
 #customers td:nth-child(3),
 #customers th:nth-child(3) {
   width: 2%;
- }
+}
 
 #customers th {
   font-size:1.1em;

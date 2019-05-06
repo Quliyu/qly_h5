@@ -7,7 +7,7 @@ import request from '@/utils/request';
 // 获取维信配置信息
 export function fetchWxConfig(query) {
   return request({
-    url: `${ProSun}/api_wx/wxConfig`,
+    url: `${ProSun}/wx/wxConfig`,
     method: 'get',
     params: query,
   });
@@ -15,7 +15,7 @@ export function fetchWxConfig(query) {
 // 通过微信授权获取的code获取微信用户信息
 export function fetchWxUserInfoByCode(query) {
   return request({
-    url: `${ProSun}/api_wx/get_user_info`,
+    url: `${ProSun}/wx/get_user_info`,
     method: 'get',
     params: query,
   });
@@ -25,7 +25,7 @@ export function fetchWxUserInfoByCode(query) {
 // 根据关键词调取高德api获取地址
 export function fetchAddressByKeyWord(query) {
   return request({
-    url: `${ProSun}/api_wx/geocode/geo`,
+    url: `${ProSun}/wx/geocode/geo`,
     method: 'get',
     params: {
       address: query.keyWord || '',
@@ -35,7 +35,7 @@ export function fetchAddressByKeyWord(query) {
 // 根据定位经纬度调取高德api获取地址
 export function fetchAddressByLocation(query) {
   return request({
-    url: `${ProSun}/api_wx/geocode/regeo`,
+    url: `${ProSun}/wx/geocode/regeo`,
     method: 'get',
     params: {
       location: query.location || '',

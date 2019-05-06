@@ -21,3 +21,12 @@ export function qlyNew(data) {
   });
 }
 
+
+// burial_point_logs 埋点日志提交
+export function burialPointLogsCreate(data) {
+  return request({
+    url: `${ProSun}/logs/create`,
+    method: 'post',
+    data,
+  });
+}
