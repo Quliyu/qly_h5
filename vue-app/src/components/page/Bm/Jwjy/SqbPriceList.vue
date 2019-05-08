@@ -78,7 +78,7 @@ export default {
   created() {
     // this.$parent.setTitle('')
     this.createLog()
-
+    console.log(this.$route)
   },
   methods: {
     // 埋点日志

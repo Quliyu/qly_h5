@@ -77,7 +77,7 @@
         <div class="one-desc">
           <p> <img style="height:20px;" src="http://img.6h5.cn/static/qly/jwjy/hd1/address-2.png"> 郭新东路57号金屋优优（尹山湖医院向西300米）</p>
           <p v-if="browserName=='wx'" style="text-align: center;">
-            <span style="padding: 5px 10px;background-color: #4692e0;color: #fff;border-radius: 50px;" @click="addressNav()">地址导航</span>
+            <!-- <span style="padding: 5px 10px;background-color: #4692e0;color: #fff;border-radius: 50px;" @click="addressNav()">地址导航</span> -->
           </p>
         </div>
         <div class="after-add"></div>
@@ -167,7 +167,7 @@ export default {
     return {
       browserName,
       share: {
-        title: '暑假班火热招生中，0元试上一天。努力在暑假，赢在新学期。五月份报名享受8.8折优惠，六月份报名享受9折优惠。团报3人起每人送200现金抵用券。'
+        title: '金屋优优暑假班火热报名中……'
       },
       courseList: [{
         name: '幼小衔接班',
@@ -257,7 +257,7 @@ export default {
       qlyNew(this.postForm).then((res) => {
         // console.log(res.data);
         if (res.data.code === 200) {
-          this.$parent.successTips({text:'恭喜您，提交成功！我们会尽快给您安排相关事宜。'});
+          this.$parent.successTips({text:'恭喜您，报名成功！感谢您的信任，我们会尽快联系您。'});
           this.postForm.content = {
             name: '',
             mobile: '',
@@ -265,7 +265,7 @@ export default {
             grade: '',
           };
         } else {
-          this.$parent.infoTips({text:'提交成功'});
+          this.$parent.infoTips({text:'非常抱歉，报名失败。可能是网络问题，请稍后重试'});
         }
         this.postForm.submiting = false
       }, (err) => {
