@@ -15,8 +15,22 @@
 
         <div class="course-hd">
           <div>
-            <p>① 暑期班火热招生中，0元试上； <br> ② 五月份报名享受8.8折优惠，六月份报名享受9折优惠； <br> ③ 团报3人起每人送166现金抵用券。 </p>
+            <p>① 暑期班火热招生中，0元试上； <br> ② 五月份报名享受8.8折优惠； <br> ③ 团报3人起每人送166现金抵用券。 </p>
           </div>
+        </div>
+
+        <div v-if="dateCountdown" class="date-countdown">
+          <span class="s-1">活动<span>结束</span>还剩</span>
+          <span class="s-2">
+            <span class="s-2-1">{{dateCountdown.days}}</span>
+            <span>天</span>
+            <span class="s-2-1">{{dateCountdown.hours}}</span>
+            <span>时</span>
+            <span class="s-2-1">{{dateCountdown.minutes}}</span>
+            <span>分</span>
+            <span class="s-2-1">{{dateCountdown.seconds}}</span>
+            <span>秒</span>
+          </span>
         </div>
 
         <div class="before-add">
@@ -160,6 +174,7 @@
 
 import { qlyNew, burialPointLogsCreate } from '@/api/sun';
 import { browserName } from '@/const';
+import fun from '@/utils/fun';
 
 export default {
   name: '',
@@ -169,6 +184,7 @@ export default {
       share: {
         title: '金屋优优暑假班火热报名中……'
       },
+      dateCountdown: null,
       courseList: [{
         name: '幼小衔接班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-yxxj.png?t=2'],
@@ -208,9 +224,16 @@ export default {
   },
   created() {
     this.$parent.setTitle(this.share.title)
+    this.showDateCountdown()
     this.createLog()
   },
   methods: {
+    showDateCountdown(){
+      this.dateCountdown = fun.diffTime('2019/06/01 00:00:00')
+      setInterval(()=>{
+        this.dateCountdown = fun.diffTime('2019/06/01 00:00:00')
+      },1000)
+    },
     selectOneCourse(el){
       this.postForm.content.course = el.name
       this.courseDetail.content = el.content
@@ -346,6 +369,24 @@ export default {
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+}
+
+.date-countdown {
+  text-align: center;
+  padding-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.date-countdown > .s-1 > span {
+  color: #E91E63;
+}
+.date-countdown > .s-2 > .s-2-1 {
+  color: #41845c;
+  background-color: #fff;
+  padding: 1px 3px;
+  font-size: 18px;
+  border-radius: 3px;
 }
 
 .course-list {
