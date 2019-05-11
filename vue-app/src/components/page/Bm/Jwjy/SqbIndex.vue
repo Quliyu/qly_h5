@@ -89,9 +89,9 @@
           </div>
         </div>
         <div class="one-desc">
-          <p> <img style="height:20px;" src="http://img.6h5.cn/static/qly/jwjy/hd1/address-2.png"> 郭新东路57号金屋优优（尹山湖医院向西300米）</p>
+          <p> <img style="height:20px;" src="http://img.6h5.cn/static/qly/jwjy/hd1/address-2.png"> {{navAddress.name}}{{navAddress.address}}</p>
           <p v-if="browserName=='wx'" style="text-align: center;">
-            <!-- <span style="padding: 5px 10px;background-color: #4692e0;color: #fff;border-radius: 50px;" @click="addressNav()">地址导航</span> -->
+            <span style="padding: 5px 10px;background-color: #4692e0;color: #fff;border-radius: 50px;" @click="addressNav()">地址导航</span>
           </p>
         </div>
         <div class="after-add"></div>
@@ -106,6 +106,7 @@
         <div class="one-desc">
           <p>谢老师：<a href="tel:15150157762" style="text-decoration: none;
             color: black;font-weight: 600;">15150157762</a>（微信同号）</p>
+          <p style="margin: 0;padding: 0;text-align: center;font-size: 10px;color: #4692e0;margin-top: -15px;">轻点拨打电话，长按可复制</p>
         </div>
         <div class="after-add"></div>
 
@@ -181,8 +182,15 @@ export default {
   data() {
     return {
       browserName,
-      share: {
-        title: '金屋优优暑假班火热报名中……'
+      shareObj: {
+        title: '金屋优优暑假班火热报名中……',
+        desc: '①暑期班火热招生中，0元试上； ②五月份报名享受8.8折优惠；③团报3人起每人送166现金抵用券。',
+        link: window.location.href,
+        imgUrl: 'http://img.6h5.cn/static/qly/jwjy/hd1/share-img-1.png'
+      },
+      navAddress: {
+        name: '郭新东路57号金屋优优',
+        address: '（尹山湖医院向西300米）'
       },
       dateCountdown: null,
       courseList: [{
@@ -223,9 +231,16 @@ export default {
     };
   },
   created() {
-    this.$parent.setTitle(this.share.title)
+    this.$parent.setTitle(this.shareObj.title)
     this.showDateCountdown()
     this.createLog()
+    // 维信分享设置
+    if (browserName === 'wx') {
+      this.$parent.wx_share_set(this.shareObj);
+    }
+  },
+  mounted(){
+
   },
   methods: {
     showDateCountdown(){
@@ -239,8 +254,17 @@ export default {
       this.courseDetail.content = el.content
       this.courseDetail.visible = true
     },
+    // 位置导航
     addressNav(){
-      this.$parent.miniTips({text:'开发中...'})
+      // 腾讯坐标拾取器 https://lbs.qq.com/tool/getpoint/
+      this.$parent.wx_open_location({
+        latitude: 31.248920, // 纬度，浮点数，范围为90 ~ -90
+        longitude: 120.676735, // 经度，浮点数，范围为180 ~ -180 
+        name: this.navAddress.name, // 位置名
+        address: this.navAddress.address, // 地址详情说明
+        scale: 16, // 地图缩放级别,整形值,范围从1~28。默认为最大
+        infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+      })
     },
     postOk() {
       if(this.postForm.submiting){
