@@ -50,10 +50,10 @@ export default {
   },
   created() {
     if (browserName === 'wx') {
-      // this.get_wx_config();
-      // setTimeout(() => {
-      //   this.wxReady = true;
-      // }, 10000);
+      this.get_wx_config();
+      setTimeout(() => {
+        this.wxReady = true;
+      }, 10000);
     } else {
       // this.get_qn_uptoken();
     }
@@ -71,7 +71,7 @@ export default {
   mounted() {
     // this.popstate();
     if (browserName === 'wx') {
-      this.wx_get_location();
+      // this.wx_get_location();
     }
   },
   methods: {
@@ -133,7 +133,7 @@ export default {
     // 获取微信配置
     get_wx_config() {
       const query = {
-        wxFwhType: 'yjx',
+        wxFwhType: 'nran',
         href: encodeURIComponent(window.location.href),
       };
       fetchWxConfig(query).then((res) => {
@@ -150,7 +150,7 @@ export default {
           nonceStr: this.wxConfig.noncestr,
           signature: this.wxConfig.signature,
           jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'hideAllNonBaseMenuItem',
-      'showMenuItems', 'openAddress', 'chooseWXPay', 'getLocation', 'scanQRCode',
+      'showMenuItems', 'openAddress', 'chooseWXPay', 'getLocation', 'openLocation', 'scanQRCode',
       'chooseImage', 'previewImage', 'uploadImage'],
         });
 
@@ -185,6 +185,17 @@ export default {
             window.localStorage.setItem('App_wxGetLocation', JSON.stringify(res1));
           }
         },
+      });
+    },
+    // 使用微信内置地图查看位置接口
+    wx_open_location(obj){
+      wx.openLocation({
+        latitude: obj.latitude, // 纬度，浮点数，范围为90 ~ -90
+        longitude: obj.longitude, // 经度，浮点数，范围为180 ~ -180。
+        name: obj.name, // 位置名
+        address: obj.address, // 地址详情说明
+        scale: obj.scale, // 地图缩放级别,整形值,范围从1~28。默认为最大
+        infoUrl: obj.infoUrl // 在查看位置界面底部显示的超链接,可点击跳转
       });
     },
     // 微信分享设置
