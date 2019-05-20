@@ -307,7 +307,7 @@ export default {
         category: 'JwjySqb',
       };
       burialPointLogsCreate(logForm).then(res=>{
-        // 
+        //
       })
     }
   },
