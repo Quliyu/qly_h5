@@ -51,8 +51,10 @@
         </div>
         <div class="one-desc" style="">
           <div class="course-list">
-            <div v-for="(el,index) in courseList" :key="index" :data-name="el.name" :class="postForm.content.course==el.name?'selected':''" @click="selectOneCourse(el)">
-              <img v-for="(em,index1) in el.img" :src="em">
+            <div v-for="(el,index) in courseList" :key="index"
+            :data-name="el.name" :class="postForm.content.course==el.name?'selected':''"
+            @click="selectOneCourse(el)">
+              <img v-for="(em,index1) in el.img" :src="em" :key="index1">
             </div>
           </div>
           <p class="bm-p">
@@ -65,7 +67,8 @@
         </div>
         <div class="after-add"></div>
 
-        <div class="course-detail-bg" v-if="courseDetail.visible" @click="courseDetail.visible=false"></div>
+        <div class="course-detail-bg" v-if="courseDetail.visible"
+        @click="courseDetail.visible=false"></div>
         <div class="course-detail" v-if="courseDetail.visible">
           <div v-html="courseDetail.content"></div>
           <div class="close-1" @click="courseDetail.visible=false">
@@ -82,7 +85,12 @@
         </div>
         <div class="one-desc">
           <div class="li-pin">
-            <p>暑假班报名即送小学生 <br> <span>电动文具套装礼盒</span>一套，<br> 或 <span>儿童画笔礼盒</span>一套，<br> 或 <span>电话手表</span>一套。（限前10名）</p>
+            <p>
+              暑假班报名即送小学生 <br>
+              <span>电动文具套装礼盒</span>一套，<br>
+              或 <span>儿童画笔礼盒</span>一套，<br>
+              或 <span>电话手表</span>一套。（限前10名）
+            </p>
             <div class="img-list">
               <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg" @click="wxPreviewImage1('http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg')">
               <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg" @click="wxPreviewImage1('http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg')">
@@ -101,7 +109,9 @@
         <div class="one-desc">
           <p> <img style="height:20px;" src="http://img.6h5.cn/static/qly/jwjy/hd1/address-2.png"> {{navAddress.name}}{{navAddress.address}}</p>
           <p v-if="browserName=='wx'" style="text-align: center;">
-            <span style="padding: 5px 10px;background-color: #4692e0;color: #fff;border-radius: 50px;" @click="addressNav()">地址导航</span>
+            <span style="padding: 5px 10px;background-color: #4692e0;
+            color: #fff;border-radius: 50px;"
+            @click="addressNav()">地址导航</span>
           </p>
         </div>
         <div class="after-add"></div>
@@ -114,9 +124,12 @@
           </div>
         </div>
         <div class="one-desc">
-          <p class="p-m-p-0">谢老师：<a href="tel:15150157762" style="text-decoration: none;color: #F44336;font-weight: 600;">15150157762</a>（微信同号）</p>
-          <p class="p-m-p-0">赵老师：<a href="tel:15950068718" style="text-decoration: none;color: #F44336;font-weight: 600;">15950068718</a>（微信同号）</p>
-          <p class="p-m-p-0" style="text-align: center;font-size: 10px;color: #4692e0;">轻点拨打电话，长按可复制</p>
+          <p class="p-m-p-0">谢老师：<a href="tel:15150157762"
+          style="text-decoration: none;color: #F44336;font-weight: 600;">15150157762</a>（微信同号）</p>
+          <p class="p-m-p-0">赵老师：<a href="tel:15950068718"
+          style="text-decoration: none;color: #F44336;font-weight: 600;">15950068718</a>（微信同号）</p>
+          <p class="p-m-p-0" style="text-align: center;font-size: 10px;
+          color: #4692e0;">轻点拨打电话，长按可复制</p>
         </div>
         <div class="after-add"></div>
 
@@ -130,12 +143,14 @@
         </div>
         <div>
           <p>
-            <input type="text" name="name" v-model="postForm.content.name" maxlength="10" placeholder="请填写您孩子的姓名">
+            <input type="text" name="name" v-model="postForm.content.name"
+            maxlength="10" placeholder="请填写您孩子的姓名">
           </p>
         </div>
         <div>
           <p>
-            <input type="tel" name="mobile" v-model="postForm.content.mobile" maxlength="11" placeholder="请填写家长联系手机号码">
+            <input type="tel" name="mobile" v-model="postForm.content.mobile"
+            maxlength="11" placeholder="请填写家长联系手机号码">
           </p>
         </div>
         <div>
@@ -204,23 +219,23 @@ export default {
       courseList: [{
         name: '幼小衔接班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-yxxj.png?t=2'],
-        content: '<div><p>招生对象：大班</p><p>课程：拼音 算数 识字</p></div>'
-      },{
+        content: '<div><p>招生对象：大班</p><p>课程：拼音 算数 识字</p></div>',
+      }, {
         name: '暑假全托班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sjqt.png?t=2'],
-        content: '<div><p>招生对象：中班、大班、一年级、二年级</p><p>全天托管</p></div>'
-      },{
+        content: '<div><p>招生对象：中班、大班、一年级、二年级</p><p>全天托管</p></div>',
+      }, {
         name: '中小学提优班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-zxxty.png?t=2'],
-        content: '<div><p>语数英课时，精品一对一</p><p>巩固旧知识，预习下学期课程</p><p>赢在起跑线</p></div>'
-      },{
+        content: '<div><p>语数英课时，精品一对一</p><p>巩固旧知识，预习下学期课程</p><p>赢在起跑线</p></div>',
+      }, {
         name: '精品一对一',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-jpydy.png'],
-        content: '<div><p>优质师资经验丰富，1对1定制学习方案</p></div>'
-      },{
+        content: '<div><p>优质师资经验丰富，1对1定制学习方案</p></div>',
+      }, {
         name: '书法班 绘画班',
-        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=2','http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=2'],
-        content: '<div><p>专业考级、硬笔书法、儿童画、素描、水墨</p></div>'
+        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=2', 'http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=2'],
+        content: '<div><p>专业考级、硬笔书法、儿童画、素描、水墨</p></div>',
       }],
       courseDetail: {
         visible: false,
@@ -243,15 +258,15 @@ export default {
     };
   },
   created() {
-    this.$parent.setTitle(this.shareObj.title)
-    this.showDateCountdown()
-    this.createLog1()
+    this.$parent.setTitle(this.shareObj.title);
+    this.showDateCountdown();
+    this.createLog1();
     // 维信分享设置
     if (browserName === 'wx') {
-      this.$parent.wx_share_set(this.shareObj,(res)=>{
+      this.$parent.wx_share_set(this.shareObj, (res) => {
         // console.log('share res=>',res)
-        if(res && res.share==='success'){
-          this.createLog2(res)
+        if (res && res.share === 'success') {
+          this.createLog2(res);
         }
       });
     }
@@ -284,12 +299,12 @@ export default {
       });
     },
     // 预览图片
-    wxPreviewImage1(img){
-      if(browserName==='wx'){
+    wxPreviewImage1(img) {
+      if (browserName === 'wx') {
         this.$parent.wx_previewImage({
-          img: img,
-          imgs: [img]
-        })
+          img,
+          imgs: [img],
+        });
       }
     },
     postOk() {
@@ -346,7 +361,7 @@ export default {
       });
     },
     // 埋点日志-访问
-    createLog1(){
+    createLog1() {
       const logForm = {
         title: '金屋-暑期班',
         user: '0',
@@ -357,25 +372,25 @@ export default {
         category: 'JwjySqb',
       };
       burialPointLogsCreate(logForm).then((res) => {
-        //
-      })
+        console.log(res);
+      });
     },
     // 埋点日志-分享
-    createLog2(share){
+    createLog2(share) {
       const logForm = {
         title: '金屋-暑期班-分享',
         user: '0',
         content: JSON.stringify({
-          share: share,
+          share,
           url: window.location.href,
           UA: window.navigator.userAgent,
         }),
         category: 'JwjySqbShare',
       };
-      burialPointLogsCreate(logForm).then(res=>{
-        // 
-      })
-    }
+      burialPointLogsCreate(logForm).then((res) => {
+        console.log(res);
+      });
+    },
   },
 };
 </script>
@@ -589,12 +604,12 @@ button.bm-btn {
   border-radius: 50px;
   font-size: 16px;
   height: 40px;
-  -webkit-animation-name:ripple;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-timing-function: ease;
-  -webkit-animation-delay: 0s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
+  animation-name:ripple;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 @keyframes ripple {
   0% {
@@ -718,9 +733,9 @@ button.bm-btn {
   margin: 0;
   padding: 0;
 }
-.main-post > div {
-  /*padding-top: 10px;*/
-}
+/* .main-post > div {
+  padding-top: 10px;
+} */
 .main-post > div > label {
   padding-left: 5px;
   border-left: solid 5px;

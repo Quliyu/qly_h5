@@ -78,11 +78,11 @@ export default {
     miniTips(options) {
       this.$refs.QlyMsg.miniTips(options);
     },
-    successTips(options){
-      this.$refs.QlyMsg.successTips(options)
+    successTips(options) {
+      this.$refs.QlyMsg.successTips(options);
     },
-    infoTips(options){
-      this.$refs.QlyMsg.infoTips(options)
+    infoTips(options) {
+      this.$refs.QlyMsg.infoTips(options);
     },
     // // 监听微信返回按钮 开始
     // popstate() {
@@ -150,8 +150,8 @@ export default {
           nonceStr: this.wxConfig.noncestr,
           signature: this.wxConfig.signature,
           jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'hideAllNonBaseMenuItem',
-      'showMenuItems', 'openAddress', 'chooseWXPay', 'getLocation', 'openLocation', 'scanQRCode',
-      'chooseImage', 'previewImage', 'uploadImage'],
+            'showMenuItems', 'openAddress', 'chooseWXPay', 'getLocation', 'openLocation', 'scanQRCode',
+            'chooseImage', 'previewImage', 'uploadImage'],
         });
 
         // 微信配置ready
@@ -161,11 +161,11 @@ export default {
         });
         this.wx.error((res1) => {
           console.error('wx config error(抱歉，微信配置错误，可能是当前环境不正确)', res1);
-          this.infoTips({text:res1.errMsg})
+          this.infoTips({ text: res1.errMsg });
         });
       }).catch((err) => {
         const tips = `${err.name}:${err.message}`;
-        this.infoTips({text:tips});
+        this.infoTips({ text: tips });
       });
     },
     // 获取地理位置
@@ -188,21 +188,21 @@ export default {
       });
     },
     // 使用微信内置地图查看位置接口
-    wx_open_location(obj){
+    wx_open_location(obj) {
       wx.openLocation({
         latitude: obj.latitude, // 纬度，浮点数，范围为90 ~ -90
         longitude: obj.longitude, // 经度，浮点数，范围为180 ~ -180。
         name: obj.name, // 位置名
         address: obj.address, // 地址详情说明
         scale: obj.scale, // 地图缩放级别,整形值,范围从1~28。默认为最大
-        infoUrl: obj.infoUrl // 在查看位置界面底部显示的超链接,可点击跳转
+        infoUrl: obj.infoUrl, // 在查看位置界面底部显示的超链接,可点击跳转
       });
     },
     // 预览图片接口
-    wx_previewImage(obj){
+    wx_previewImage(obj) {
       wx.previewImage({
         current: obj.img, // 当前显示图片的http链接
-        urls: obj.imgs // 需要预览的图片http链接列表
+        urls: obj.imgs, // 需要预览的图片http链接列表
       });
     },
     // 微信分享设置
@@ -232,7 +232,7 @@ export default {
             if (callback) {
               callback({
                 share: 'success',
-                scene: 'wx1'
+                scene: 'wx1',
               });
             }
             // alert('wx share success')
@@ -255,7 +255,7 @@ export default {
             if (callback) {
               callback({
                 share: 'success',
-                scene: 'wx2'
+                scene: 'wx2',
               });
             }
             // 用户确认分享后执行的回调函数
@@ -277,7 +277,7 @@ export default {
             if (callback) {
               callback({
                 share: 'success',
-                scene: 'qq1'
+                scene: 'qq1',
               });
             }
             // 用户确认分享后执行的回调函数
@@ -299,7 +299,7 @@ export default {
             if (callback) {
               callback({
                 share: 'success',
-                scene: 'qq2'
+                scene: 'qq2',
               });
             }
             // 用户确认分享后执行的回调函数

@@ -1,20 +1,19 @@
 <template>
-	<div>
-
-		<table id="customers">
-			<tr>
-				<th>课程</th>
-				<th>招生对象</th>
-				<th>简介</th>
-				<th>价格</th>
-			</tr>
-			<tr v-for="(el,index) in priceList" :class="index%2==1?'alt':''">
-				<td>{{el.name}}</td>
-				<td>{{el.grade}}</td>
-				<td>{{el.desc}}</td>
-				<td>{{el.price}}</td>
-			</tr>
-		</table>
+  <div>
+    <table id="customers">
+      <tr>
+        <th>课程</th>
+        <th>招生对象</th>
+        <th>简介</th>
+        <th>价格</th>
+      </tr>
+      <tr v-for="(el,index) in priceList" :class="index%2==1?'alt':''" :key="index">
+        <td>{{el.name}}</td>
+        <td>{{el.grade}}</td>
+        <td>{{el.desc}}</td>
+        <td>{{el.price}}</td>
+      </tr>
+    </table>
 
     <div class="course-hd">
       <div>
@@ -28,10 +27,9 @@
       </div>
     </div>
 
-	</div>
-	
-</template>
+  </div>
 
+</template>
 
 
 <script type="text/javascript">
@@ -39,50 +37,50 @@
 import { burialPointLogsCreate } from '@/api/sun';
 
 export default {
-	name: '',
-	data(){
-		return {
-			priceList: [{
-				name: '暑假托管班',
-				grade: '幼小衔接、一年级、二年级',
-				price: '2450',
-				desc: '辅导完成暑假作业，送一门课程（指定）',
-			},{
-				name: '暑假课时班',
-				grade: '一年级 ~ 六年级',
-				price: '2980',
-				desc: '纯课时，三师一班制，语数英全科巩固，下学期重难点知识详细讲解',
-			},{
-				name: '暑假提优班',
-				grade: '一年级 ~ 六年级',
-				price: '3680',
-				desc: '资深老师指导重难点突破。奥数分析讲解。当堂讲解及时大量题型练习。冲刺满分！！（报名建议每科成绩不低于80分）',
-			},{
-				name: '精品1对1',
-				grade: '一年级 ~ 六年级',
-				price: '120/小时',
-				desc: '',
-			},{
-				name: '绘画班',
-				grade: '幼小衔接，一到三年级',
-				price: '1260',
-				desc: '儿童画、水墨、素描；18课时',
-			},{
-				name: '书法班',
-				grade: '小学',
-				price: '1260',
-				desc: '硬笔书法、中国书法、字里千秋、阐释书法精神；18课时',
-			}]
-		}
-	},
+  name: '',
+  data() {
+    return {
+      priceList: [{
+        name: '暑假托管班',
+        grade: '幼小衔接、一年级、二年级',
+        price: '2450',
+        desc: '辅导完成暑假作业，送一门课程（指定）',
+      }, {
+        name: '暑假课时班',
+        grade: '一年级 ~ 六年级',
+        price: '2980',
+        desc: '纯课时，三师一班制，语数英全科巩固，下学期重难点知识详细讲解',
+      }, {
+        name: '暑假提优班',
+        grade: '一年级 ~ 六年级',
+        price: '3680',
+        desc: '资深老师指导重难点突破。奥数分析讲解。当堂讲解及时大量题型练习。冲刺满分！！（报名建议每科成绩不低于80分）',
+      }, {
+        name: '精品1对1',
+        grade: '一年级 ~ 六年级',
+        price: '120/小时',
+        desc: '',
+      }, {
+        name: '绘画班',
+        grade: '幼小衔接，一到三年级',
+        price: '1260',
+        desc: '儿童画、水墨、素描；18课时',
+      }, {
+        name: '书法班',
+        grade: '小学',
+        price: '1260',
+        desc: '硬笔书法、中国书法、字里千秋、阐释书法精神；18课时',
+      }],
+    };
+  },
   created() {
     // this.$parent.setTitle('')
-    this.createLog()
-    console.log(this.$route)
+    this.createLog();
+    console.log(this.$route);
   },
   methods: {
     // 埋点日志
-    createLog(){
+    createLog() {
       const logForm = {
         title: '金屋-暑期班-价格',
         user: '0',
@@ -92,19 +90,19 @@ export default {
         }),
         category: 'JwjySqbPrice',
       };
-      burialPointLogsCreate(logForm).then(res=>{
-        // 
-      })
+      burialPointLogsCreate(logForm).then((res) => {
+        console.log(res);
+      });
     },
-  }
-}
+  },
+};
 </script>
 
 <style type="text/css" scoped>
 #customers {
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	width:100%;
-	border-collapse:collapse;
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+  border-collapse:collapse;
 }
 
 #customers td,
