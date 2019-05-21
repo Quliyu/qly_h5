@@ -111,7 +111,6 @@
         <div class="after-add"></div>
 
 
-
       </div>
 
       <div class="main-post-bg" v-if="postForm.visible" @click="postForm.visible=false"></div>
@@ -166,7 +165,6 @@
     </div>
 
 
-
   </div>
 
 </template>
@@ -186,36 +184,36 @@ export default {
         title: '金屋优优暑假班火热报名中……',
         desc: '①暑期班火热招生中，0元试上； ②五月份报名享受8.8折优惠；③团报3人起每人送166现金抵用券。',
         link: window.location.href,
-        imgUrl: 'http://img.6h5.cn/static/qly/jwjy/hd1/share-img-1.png'
+        imgUrl: 'http://img.6h5.cn/static/qly/jwjy/hd1/share-img-1.png',
       },
       navAddress: {
         name: '郭新东路57号金屋优优',
-        address: '（尹山湖医院向西300米）'
+        address: '（尹山湖医院向西300米）',
       },
       dateCountdown: null,
       courseList: [{
         name: '幼小衔接班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-yxxj.png?t=2'],
-        content: '<div><p>招生对象：大班</p><p>课程：拼音 算数 识字</p></div>'
-      },{
+        content: '<div><p>招生对象：大班</p><p>课程：拼音 算数 识字</p></div>',
+      }, {
         name: '中小学提优班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-zxxty.png?t=2'],
-        content: '<div><p>语数英课时，精品一对一</p><p>巩固旧知识，预习下学期课程</p><p>赢在起跑线</p></div>'
-      },{
+        content: '<div><p>语数英课时，精品一对一</p><p>巩固旧知识，预习下学期课程</p><p>赢在起跑线</p></div>',
+      }, {
         name: '书法班 绘画班',
-        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=2','http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=2'],
-        content: '<div><p>专业考级、硬笔书法、儿童画、素描、水墨</p></div>'
-      },{
+        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=2', 'http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=2'],
+        content: '<div><p>专业考级、硬笔书法、儿童画、素描、水墨</p></div>',
+      }, {
         name: '绘画班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sjqt.png?t=2'],
-        content: '<div><p>招生对象：中班、大班、一年级、二年级</p><p>全天托管</p></div>'
+        content: '<div><p>招生对象：中班、大班、一年级、二年级</p><p>全天托管</p></div>',
       }],
       courseDetail: {
         visible: false,
-        content: ''
+        content: '',
       },
       schoolList: ['郭巷实验小学', '尹山湖实验小学', '金港学校', '东方学校', '尹山湖中学', '其他'],
-      gradeList: ['幼小衔接', '一升二', '二升三', '三升四', '四升五', '五升六','小升初','七升八','八升九'],
+      gradeList: ['幼小衔接', '一升二', '二升三', '三升四', '四升五', '五升六', '小升初', '七升八', '八升九'],
       postForm: {
         visible: false,
         submiting: false,
@@ -225,78 +223,78 @@ export default {
           mobile: '',
           school: '',
           grade: '',
-          course: ''
-        }
+          course: '',
+        },
       },
     };
   },
   created() {
-    this.$parent.setTitle(this.shareObj.title)
-    this.showDateCountdown()
-    this.createLog()
+    this.$parent.setTitle(this.shareObj.title);
+    this.showDateCountdown();
+    this.createLog();
     // 维信分享设置
     if (browserName === 'wx') {
       this.$parent.wx_share_set(this.shareObj);
     }
   },
-  mounted(){
+  mounted() {
 
   },
   methods: {
-    showDateCountdown(){
-      this.dateCountdown = fun.diffTime('2019/06/01 00:00:00')
-      setInterval(()=>{
-        this.dateCountdown = fun.diffTime('2019/06/01 00:00:00')
-      },1000)
+    showDateCountdown() {
+      this.dateCountdown = fun.diffTime('2019/06/01 00:00:00');
+      setInterval(() => {
+        this.dateCountdown = fun.diffTime('2019/06/01 00:00:00');
+      }, 1000);
     },
-    selectOneCourse(el){
-      this.postForm.content.course = el.name
-      this.courseDetail.content = el.content
-      this.courseDetail.visible = true
+    selectOneCourse(el) {
+      this.postForm.content.course = el.name;
+      this.courseDetail.content = el.content;
+      this.courseDetail.visible = true;
     },
     // 位置导航
-    addressNav(){
+    addressNav() {
       // 腾讯坐标拾取器 https://lbs.qq.com/tool/getpoint/
       this.$parent.wx_open_location({
         latitude: 31.248920, // 纬度，浮点数，范围为90 ~ -90
-        longitude: 120.676735, // 经度，浮点数，范围为180 ~ -180 
+        longitude: 120.676735, // 经度，浮点数，范围为180 ~ -180
         name: this.navAddress.name, // 位置名
         address: this.navAddress.address, // 地址详情说明
         scale: 16, // 地图缩放级别,整形值,范围从1~28。默认为最大
-        infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
-      })
+        infoUrl: '', // 在查看位置界面底部显示的超链接,可点击跳转
+      });
     },
     postOk() {
-      if(this.postForm.submiting){
-        return
+      if (this.postForm.submiting) {
+        return;
       }
-      this.postForm.submiting = true
-      setTimeout(()=>{
-        this.postForm.submiting = false
-      },1500)
+      this.postForm.submiting = true;
+      setTimeout(() => {
+        this.postForm.submiting = false;
+      }, 1500);
       // console.log(this.postForm);
       if (!this.postForm.content.name) {
-        this.$parent.miniTips({text:'请填写您孩子的姓名'});
+        this.$parent.miniTips({ text: '请填写您孩子的姓名' });
         return;
       }
       if (!this.postForm.content.mobile) {
-        this.$parent.miniTips({text:'请填写家长联系手机号码'});
+        this.$parent.miniTips({ text: '请填写家长联系手机号码' });
         return;
       }
       if (!(/^0?(13|14|15|17|18)[0-9]{9}$/.test(this.postForm.content.mobile))) {
-        this.$parent.miniTips({text:'手机号格式不正确'});
+        this.$parent.miniTips({ text: '手机号格式不正确' });
         return;
       }
       if (!this.postForm.content.school) {
-        this.$parent.miniTips({text:'请选择学校'});
+        this.$parent.miniTips({ text: '请选择学校' });
         return;
       }
       if (!this.postForm.content.grade) {
-        this.$parent.miniTips({text:'请选择年级'});
+        this.$parent.miniTips({ text: '请选择年级' });
         return;
       }
       if (!this.postForm.category) {
-        this.$parent.miniTips({text:'请选择机构'});
+        this.$parent.miniTips({ text: '请选择机构' });
         return;
       }
       // this.$parent.successTips({text:'开发中...'});
@@ -304,7 +302,7 @@ export default {
       qlyNew(this.postForm).then((res) => {
         // console.log(res.data);
         if (res.data.code === 200) {
-          this.$parent.successTips({text:'恭喜您，报名成功！感谢您的信任，我们会尽快联系您。'});
+          this.$parent.successTips({ text: '恭喜您，报名成功！感谢您的信任，我们会尽快联系您。' });
           this.postForm.content = {
             name: '',
             mobile: '',
@@ -312,15 +310,15 @@ export default {
             grade: '',
           };
         } else {
-          this.$parent.infoTips({text:'非常抱歉，报名失败。可能是网络问题，请稍后重试'});
+          this.$parent.infoTips({ text: '非常抱歉，报名失败。可能是网络问题，请稍后重试' });
         }
-        this.postForm.submiting = false
+        this.postForm.submiting = false;
       }, (err) => {
         console.info('调用失败', err);
       });
     },
     // 埋点日志
-    createLog(){
+    createLog() {
       const logForm = {
         title: '金屋-暑期班',
         user: '0',
@@ -330,10 +328,10 @@ export default {
         }),
         category: 'JwjySqb',
       };
-      burialPointLogsCreate(logForm).then(res=>{
+      burialPointLogsCreate(logForm).then((res) => {
         //
-      })
-    }
+      });
+    },
   },
 };
 </script>
