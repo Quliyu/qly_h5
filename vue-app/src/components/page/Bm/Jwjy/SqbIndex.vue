@@ -15,7 +15,7 @@
 
         <div class="course-hd">
           <div>
-            <p>① 暑期班火热招生中，0元试上； <br> ② 五月份报名享受8.8折优惠； <br> ③ 团报3人起每人送166现金抵用券。 </p>
+            <p>① 暑期班火热招生中，0元试上； <br> ② 五月份报名享受8.8折优惠； <br> ③ 团报3人起每人再送166现金抵用券。 </p>
           </div>
         </div>
 
@@ -31,6 +31,16 @@
             <span class="s-2-1">{{dateCountdown.seconds}}</span>
             <span>秒</span>
           </span>
+        </div>
+
+        <div class="repeat-text">
+          <p>转发朋友圈集满<span style="font-size: 22px;color: #9932cc;">48赞</span>即送精美小学生全自动多功能削笔器！！！</p>
+          <p style="text-align: center;">
+            <img style="width: 50px;" src="http://img.6h5.cn/static/qly/jwjy/hd1/hdlp-1.png" @click="wxPreviewImage1('http://img.6h5.cn/static/qly/jwjy/hd1/hdlp-1.png')">
+          </p>
+          <p style="text-align: center;" v-if="browserName=='wx'">
+            <span style="text-align: center;font-size: 10px;color: #4692e0;">点击图片大图预览</span>
+          </p>
         </div>
 
         <div class="before-add">
@@ -74,8 +84,8 @@
           <div class="li-pin">
             <p>暑假班报名即送小学生 <br> <span>电动文具套装礼盒</span>一套，<br> 或 <span>儿童画笔礼盒</span>一套，<br> 或 <span>电话手表</span>一套。（限前10名）</p>
             <div class="img-list">
-              <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg">
-              <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg">
+              <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg" @click="wxPreviewImage1('http://img.6h5.cn/static/qly/jwjy/hd1/lipin1.jpg')">
+              <img src="http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg" @click="wxPreviewImage1('http://img.6h5.cn/static/qly/jwjy/hd1/lipin2.jpg')">
             </div>
           </div>
         </div>
@@ -104,9 +114,9 @@
           </div>
         </div>
         <div class="one-desc">
-          <p>谢老师：<a href="tel:15150157762" style="text-decoration: none;
-            color: black;font-weight: 600;">15150157762</a>（微信同号）</p>
-          <p style="margin: 0;padding: 0;text-align: center;font-size: 10px;color: #4692e0;margin-top: -15px;">轻点拨打电话，长按可复制</p>
+          <p class="p-m-p-0">谢老师：<a href="tel:15150157762" style="text-decoration: none;color: #F44336;font-weight: 600;">15150157762</a>（微信同号）</p>
+          <p class="p-m-p-0">赵老师：<a href="tel:15950068718" style="text-decoration: none;color: #F44336;font-weight: 600;">15950068718</a>（微信同号）</p>
+          <p class="p-m-p-0" style="text-align: center;font-size: 10px;color: #4692e0;">轻点拨打电话，长按可复制</p>
         </div>
         <div class="after-add"></div>
 
@@ -194,19 +204,23 @@ export default {
       courseList: [{
         name: '幼小衔接班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-yxxj.png?t=2'],
-        content: '<div><p>招生对象：大班</p><p>课程：拼音 算数 识字</p></div>',
-      }, {
+        content: '<div><p>招生对象：大班</p><p>课程：拼音 算数 识字</p></div>'
+      },{
+        name: '暑假全托班',
+        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sjqt.png?t=2'],
+        content: '<div><p>招生对象：中班、大班、一年级、二年级</p><p>全天托管</p></div>'
+      },{
         name: '中小学提优班',
         img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-zxxty.png?t=2'],
-        content: '<div><p>语数英课时，精品一对一</p><p>巩固旧知识，预习下学期课程</p><p>赢在起跑线</p></div>',
-      }, {
+        content: '<div><p>语数英课时，精品一对一</p><p>巩固旧知识，预习下学期课程</p><p>赢在起跑线</p></div>'
+      },{
+        name: '精品一对一',
+        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-jpydy.png'],
+        content: '<div><p>优质师资经验丰富，1对1定制学习方案</p></div>'
+      },{
         name: '书法班 绘画班',
-        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=2', 'http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=2'],
-        content: '<div><p>专业考级、硬笔书法、儿童画、素描、水墨</p></div>',
-      }, {
-        name: '绘画班',
-        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sjqt.png?t=2'],
-        content: '<div><p>招生对象：中班、大班、一年级、二年级</p><p>全天托管</p></div>',
+        img: ['http://img.6h5.cn/static/qly/jwjy/hd1/b-sf.png?t=2','http://img.6h5.cn/static/qly/jwjy/hd1/b-hh.png?t=2'],
+        content: '<div><p>专业考级、硬笔书法、儿童画、素描、水墨</p></div>'
       }],
       courseDetail: {
         visible: false,
@@ -229,12 +243,17 @@ export default {
     };
   },
   created() {
-    this.$parent.setTitle(this.shareObj.title);
-    this.showDateCountdown();
-    this.createLog();
+    this.$parent.setTitle(this.shareObj.title)
+    this.showDateCountdown()
+    this.createLog1()
     // 维信分享设置
     if (browserName === 'wx') {
-      this.$parent.wx_share_set(this.shareObj);
+      this.$parent.wx_share_set(this.shareObj,(res)=>{
+        // console.log('share res=>',res)
+        if(res && res.share==='success'){
+          this.createLog2(res)
+        }
+      });
     }
   },
   mounted() {
@@ -263,6 +282,15 @@ export default {
         scale: 16, // 地图缩放级别,整形值,范围从1~28。默认为最大
         infoUrl: '', // 在查看位置界面底部显示的超链接,可点击跳转
       });
+    },
+    // 预览图片
+    wxPreviewImage1(img){
+      if(browserName==='wx'){
+        this.$parent.wx_previewImage({
+          img: img,
+          imgs: [img]
+        })
+      }
     },
     postOk() {
       if (this.postForm.submiting) {
@@ -317,8 +345,8 @@ export default {
         console.info('调用失败', err);
       });
     },
-    // 埋点日志
-    createLog() {
+    // 埋点日志-访问
+    createLog1(){
       const logForm = {
         title: '金屋-暑期班',
         user: '0',
@@ -330,13 +358,33 @@ export default {
       };
       burialPointLogsCreate(logForm).then((res) => {
         //
-      });
+      })
     },
+    // 埋点日志-分享
+    createLog2(share){
+      const logForm = {
+        title: '金屋-暑期班-分享',
+        user: '0',
+        content: JSON.stringify({
+          share: share,
+          url: window.location.href,
+          UA: window.navigator.userAgent,
+        }),
+        category: 'JwjySqbShare',
+      };
+      burialPointLogsCreate(logForm).then(res=>{
+        // 
+      })
+    }
   },
 };
 </script>
 
 <style scoped>
+.p-m-p-0 {
+  margin: 0;
+  padding: 0;
+}
 
 .banner-top {
   position: relative;
@@ -400,6 +448,20 @@ export default {
   font-weight: 600;
 }
 
+.repeat-text {
+  font-size: 17px;
+  color: #E91E63;
+  font-weight: 600;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 50px;
+  margin-top: 15px;
+}
+.repeat-text p {
+  margin: 0;
+  padding: 0;
+}
+
 .date-countdown > .s-1 > span {
   color: #E91E63;
 }
@@ -445,10 +507,11 @@ export default {
   margin-left: 15px;
 }
 .course-list > div:nth-child(1) > img,
+.course-list > div:nth-child(2) > img,
 .course-list > div:nth-child(4) > img {
   height: 75%;
 }
-.course-list > div:nth-child(2) > img {
+.course-list > div:nth-child(3) > img {
   height: 80%;
 }
 
@@ -485,9 +548,11 @@ export default {
   height: fit-content;
   padding: 20px;
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 18px;
   min-height: 150px;
   border-radius: 10px;
+  color: #F44336;
+  font-weight: 600;
 }
 .close-1 {
   position: absolute;

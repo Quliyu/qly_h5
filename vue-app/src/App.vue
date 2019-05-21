@@ -198,6 +198,13 @@ export default {
         infoUrl: obj.infoUrl // 在查看位置界面底部显示的超链接,可点击跳转
       });
     },
+    // 预览图片接口
+    wx_previewImage(obj){
+      wx.previewImage({
+        current: obj.img, // 当前显示图片的http链接
+        urls: obj.imgs // 需要预览的图片http链接列表
+      });
+    },
     // 微信分享设置
     wx_share_set(share, callback) {
       if (!this.wxReady) {
@@ -223,7 +230,10 @@ export default {
           dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
           success: () => {
             if (callback) {
-              callback();
+              callback({
+                share: 'success',
+                scene: 'wx1'
+              });
             }
             // alert('wx share success')
             // 用户确认分享后执行的回调函数
@@ -243,7 +253,10 @@ export default {
           imgUrl: share.imgUrl, // 分享图标
           success: () => {
             if (callback) {
-              callback();
+              callback({
+                share: 'success',
+                scene: 'wx2'
+              });
             }
             // 用户确认分享后执行的回调函数
           },
@@ -262,7 +275,10 @@ export default {
           imgUrl: share.imgUrl, // 分享图标
           success: () => {
             if (callback) {
-              callback();
+              callback({
+                share: 'success',
+                scene: 'qq1'
+              });
             }
             // 用户确认分享后执行的回调函数
           },
@@ -281,7 +297,10 @@ export default {
           imgUrl: share.imgUrl, // 分享图标
           success: () => {
             if (callback) {
-              callback();
+              callback({
+                share: 'success',
+                scene: 'qq2'
+              });
             }
             // 用户确认分享后执行的回调函数
           },
