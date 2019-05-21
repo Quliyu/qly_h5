@@ -359,7 +359,7 @@ export default {
         category: 'JwjySqb',
       };
       burialPointLogsCreate(logForm).then(res=>{
-        // 
+        //
       })
     },
     // 埋点日志-分享
