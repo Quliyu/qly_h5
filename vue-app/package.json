@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "pub6h5": "rsync -avz --delete ./dist root@6h5.cn:/home/fe_group/web_static/qly_h5/vue-app"
+    "pubNr": "rsync -avz --delete ./dist root@www.nianran.net:/home/fe_group/web_static/qly_h5/vue-app"
   },
   "dependencies": {
     "axios": "^0.18.0",

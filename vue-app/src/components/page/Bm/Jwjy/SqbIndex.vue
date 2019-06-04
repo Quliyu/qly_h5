@@ -15,7 +15,7 @@
 
         <div class="course-hd">
           <div>
-            <p>① 暑期班火热招生中，0元试上； <br> ② 五月份报名享受8.8折优惠； <br> ③ 团报3人起每人再送166现金抵用券。 </p>
+            <p>① 暑期班火热招生中，0元试上； <br> ② 团报3人起每人再送166现金抵用券。 </p>
           </div>
         </div>
 
@@ -207,7 +207,7 @@ export default {
       browserName,
       shareObj: {
         title: '金屋优优暑假班火热报名中……',
-        desc: '①暑期班火热招生中，0元试上； ②五月份报名享受8.8折优惠；③团报3人起每人送166现金抵用券。',
+        desc: '①暑期班火热招生中，0元试上； ②团报3人起每人送166现金抵用券。',
         link: window.location.href,
         imgUrl: 'http://img.6h5.cn/static/qly/jwjy/hd1/share-img-1.png',
       },
@@ -276,9 +276,10 @@ export default {
   },
   methods: {
     showDateCountdown() {
-      this.dateCountdown = fun.diffTime('2019/06/01 00:00:00');
+      const date2 = '2019/07/01 00:00:00';
+      this.dateCountdown = fun.diffTime(date2);
       setInterval(() => {
-        this.dateCountdown = fun.diffTime('2019/06/01 00:00:00');
+        this.dateCountdown = fun.diffTime(date2);
       }, 1000);
     },
     selectOneCourse(el) {
